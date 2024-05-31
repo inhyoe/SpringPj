@@ -7,6 +7,7 @@
     Login Page
 </title>
 <body>
-    login
+    Welcome to login page ${name}
+
 </body>
 </html>
