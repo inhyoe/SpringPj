@@ -43,26 +43,15 @@ public class FilteringController {
 	}
 
 	@GetMapping("/filtering-list-dynamic-test")
-	public List<SomeBeanWithDynamicFiltering> filteringListDynamicTest(){
-		SomeBeanWithDynamicFiltering someBean1 = new SomeBeanWithDynamicFiltering("v1", "v2", "v3");
-		SomeBeanWithDynamicFiltering someBean2 = new SomeBeanWithDynamicFiltering("v4", "v5", "v6");
+	public MappingJacksonValue filteringListDynamicTest(){
+		List<SomeBeanWithDynamicFiltering> list = Arrays.asList(new SomeBeanWithDynamicFiltering("val1","va32","val3"), new SomeBeanWithDynamicFiltering("v1","v2","v3"));
 
-		MappingJacksonValue mapping1 = new MappingJacksonValue(someBean1);
+		MappingJacksonValue mapping1 = new MappingJacksonValue(list);
 		PropertyFilter filter1 = SimpleBeanPropertyFilter.filterOutAllExcept("field2", "field3");
 		FilterProvider filters1 = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter1);
 		mapping1.setFilters(filters1);
 
-		// MappingJacksonValue mapping2 = new MappingJacksonValue(someBean2);
-		// PropertyFilter filter2 = SimpleBeanPropertyFilter.filterOutAllExcept("field1");
-		// FilterProvider filters2 = new SimpleFilterProvider().addFilter("SomeBeanFilter", filter2);
-		// mapping2.setFilters(filters2);
-
-		// Logger.getLogger("mapping1",mapping1.toString());
-		// Logger.getLogger("AsList",Arrays.asList(mapping1, mapping2).toString());
-
-	return Arrays.asList(new SomeBeanWithDynamicFiltering("v1", "v2", "v3"));
-		// return Arrays.asList(mapping1, mapping2);
-		// return Arrays.asList(new SomeBeanWithDynamicFiltering("value1", "value2", "value3"), new SomeBeanWithDynamicFiltering("v4","v5","v6"));
+	return mapping1;
 
 	}
 
